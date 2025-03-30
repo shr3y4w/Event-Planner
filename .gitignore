@@ -1,0 +1,37 @@
+# Python-related
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.env
+.env
+.env.example
+db.sqlite3
+instance/
+*.log
+
+# Django-related
+/media/
+/staticfiles/
+/static/
+*.sqlite3
+/local_settings.py
+
+# PostgreSQL
+*.sql
+*.dump
+
+# Node.js / React
+node_modules/
+npm-debug.log
+yarn-error.log
+.yarn-integrity
+*.env.local
+
+# VS Code and IDE settings
+.vscode/
+.idea/
+.DS_Store
+
+# Git
+.git/
