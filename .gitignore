@@ -36,3 +36,4 @@ yarn-error.log
 # Git
 .git/
 test_api.py
+test_event.py
