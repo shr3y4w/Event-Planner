@@ -12,6 +12,8 @@ const LoginPage = () => {
     const success = await loginUser(username, password);
     if (success) {
       navigate('/events');
+    } else {
+      alert('Invalid username or password');
     }
   };
 
@@ -19,14 +21,25 @@ const LoginPage = () => {
     <div>
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit">Login</button>
       </form>
-      <p>Don't have an account? <a href="/register">Register</a></p>
+      <p>
+        Don't have an account? <a href="/register">Register</a>
+      </p>
     </div>
   );
 };
 
 export default LoginPage;
-

@@ -5,24 +5,21 @@ import Events from './pages/EventsPage';
 import ManageEvents from './pages/ManageEvents';
 import Login from './pages/LoginPage';
 import Home from './pages/Home';
+import Navbar from './components/Navbar';
+import EventDetailPage from './pages/EventDetailPage'; // NEW
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
     <Router>
+      <Navbar /> {/* Visible on all pages */}
       <Routes>
-        {/* Homepage Route - Redirect to Login */}
         <Route path="/" element={<Home />} />
-
-        {/* Login Page */}
         <Route path="/login" element={<Login />} />
-
-        {/* Register Page */}
         <Route path="/register" element={<Register />} />
-
-        {/* Events Page */}
         <Route path="/events" element={<Events />} />
-
-        {/* Manage Events Page */}
+        <Route path="/events/:id" element={<EventDetailPage />} /> {/* NEW */}
         <Route path="/manage-events" element={<ManageEvents />} />
       </Routes>
     </Router>
