@@ -13,3 +13,6 @@ class IsEventMakerOrAdmin(permissions.BasePermission):
         # Allow if user is admin or the event maker
         return obj.created_by == request.user or request.user.is_staff
 
+class IsRegularUser(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_authenticated and request.user.role == 'user'

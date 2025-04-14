@@ -1,5 +1,6 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions 
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework import serializers
 from rest_framework.response import Response
 from rest_framework import status
 from .models import Event , Booking
@@ -55,6 +56,10 @@ class BookingViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def perform_create(self, serializer):
+
+        if self.request.user.role == 'event_planner':
+            raise serializers.ValidationError("Organizers are not allowed to book events.")
+    
         event = serializer.validated_data['event']
 
         if event.available_seats <= 0:
