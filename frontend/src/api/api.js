@@ -29,3 +29,37 @@ export const registerUser = async (username, email, password, role) => {
     return false;
   }
 };
+
+// 🔐 Authenticated axios instance for event operations
+const authAxios = axios.create({
+  baseURL: API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Automatically attach the access token
+authAxios.interceptors.request.use((config) => {
+  const token = localStorage.getItem('access_token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
+// ✅ EVENT APIs
+
+// Fetch only the events created by the logged-in user
+export const getMyEvents = () => authAxios.get('/events/?mine=true');
+
+// Create a new event
+export const createEvent = (data) => authAxios.post('/events/', data);
+
+// Update an existing event
+export const updateEvent = (id, data) => authAxios.put(`/events/${id}/`, data);
+
+// Delete an event
+export const deleteEvent = (id) => authAxios.delete(`/events/${id}/`);
+
+export const getEventsByOrganizer = (username) =>
+  axios.get(`${API_URL}/events/?created_by=${username}`);

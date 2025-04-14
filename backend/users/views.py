@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from rest_framework.permissions import AllowAny
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -19,7 +19,9 @@ def get_tokens_for_user(user):
     }
 
 # User Registration
-class RegisterView(APIView):   #api view allows to handle http req like post get
+class RegisterView(APIView):
+    permission_classes = [AllowAny] 
+       #api view allows to handle http req like post get
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
