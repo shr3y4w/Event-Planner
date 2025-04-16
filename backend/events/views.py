@@ -112,5 +112,4 @@ def scan_qr(request):
 
 # a class that combines logic for handling multiple HTTP methods (like GET, POST, PUT, DELETE) into a
 #  single class. It is a higher-level abstraction that simplifies the creation of RESTful APIs by 
-#  grouping related views together.
-
+#  grouping related views together.

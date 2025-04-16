@@ -1,0 +1,7 @@
+/* Custom styling for the background image */
+.background-image {
+    object-fit: cover;
+    height: 50vh; /* Make the image cover the top half */
+    width: 100%;
+  }
+  

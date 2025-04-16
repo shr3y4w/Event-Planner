@@ -84,6 +84,7 @@ function ManageEvents() {
                 <p><strong>Date & Time:</strong> {new Date(event.date_time).toLocaleString()}</p>
                 <p><strong>Location:</strong> {event.location}</p>
                 <p><strong>Available Seats:</strong> {event.available_seats}</p>
+                <p><strong>Price:</strong> ₹{event.price}</p>
                 <p><strong>Created By:</strong> {event.created_by?.username || event.created_by}</p>
 
                 <button onClick={() => {
@@ -102,5 +103,4 @@ function ManageEvents() {
   );
 }
 
-export default ManageEvents;
-
+export default ManageEvents;

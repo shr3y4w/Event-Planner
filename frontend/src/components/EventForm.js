@@ -7,6 +7,7 @@ function EventForm({ event, onSubmit, onCancel }) {
     date_time: '',
     location: '',
     available_seats: '',
+    price: '', // ✅ New field for price
   });
 
   useEffect(() => {
@@ -17,6 +18,7 @@ function EventForm({ event, onSubmit, onCancel }) {
         date_time: event.date_time || '',
         location: event.location || '',
         available_seats: event.available_seats || '',
+        price: event.price || '', // ✅ Pre-fill price on edit
         created_by: event.created_by || '',
       });
     }
@@ -74,7 +76,17 @@ function EventForm({ event, onSubmit, onCancel }) {
         required
       />
 
-      {/* ✅ Read-only field showing who created the event */}
+      <input
+        name="price"
+        type="number"
+        step="0.01"
+        placeholder="Price (₹)"
+        value={formData.price}
+        onChange={handleChange}
+        required
+      />
+
+      {/* Read-only field showing who created the event */}
       {event && event.created_by && (
         <input
           name="created_by"
@@ -90,4 +102,4 @@ function EventForm({ event, onSubmit, onCancel }) {
   );
 }
 
-export default EventForm;
+export default EventForm;

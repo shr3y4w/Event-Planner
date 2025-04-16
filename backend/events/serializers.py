@@ -6,7 +6,7 @@ class EventSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Event
-        fields = '__all__'
+        fields = '_all_'
         read_only_fields = ['created_by']
 
     def get_created_by(self, obj):
@@ -16,4 +16,4 @@ class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Booking
         fields = ['id', 'event', 'qr_code', 'timestamp']
-        read_only_fields = ['qr_code', 'timestamp']
+        read_only_fields = ['qr_code','timestamp']

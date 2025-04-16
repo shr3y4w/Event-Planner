@@ -16,9 +16,9 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-lg">
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand">Event Planner</Link>
+        <Link to="/" className="navbar-brand fw-bold text-white fs-2">Event Planner</Link>
 
         <button
           className="navbar-toggler"
@@ -37,17 +37,17 @@ const Navbar = () => {
 
             {/* Always visible when logged in or out */}
             <li className="nav-item">
-              <Link to="/" className="nav-link">Home</Link>
+              <Link to="/" className={`nav-link btn rounded-pill ${location.pathname === '/' ? 'btn-primary' : 'btn-light'}`}>Home</Link>
             </li>
 
             <li className="nav-item">
-              <Link to="/events" className="nav-link">Events</Link>
+              <Link to="/events" className={`nav-link btn rounded-pill ${location.pathname === '/events' ? 'btn-primary' : 'btn-light'}`}>Events</Link>
             </li>
 
             {/* Only for event planners */}
             {token && role === 'event_planner' && (
               <li className="nav-item">
-                <Link to="/manage-events" className="nav-link">Manage Events</Link>
+                <Link to="/manage-events" className={`nav-link btn rounded-pill ${location.pathname === '/manage-events' ? 'btn-primary' : 'btn-light'}`}>Manage Events</Link>
               </li>
             )}
 
@@ -55,15 +55,15 @@ const Navbar = () => {
             {!token ? (
               <>
                 <li className="nav-item">
-                  <Link to="/login" className="nav-link">Login</Link>
+                  <Link to="/login" className="nav-link btn rounded-pill btn-light">Login</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/register" className="nav-link">Register</Link>
+                  <Link to="/register" className="nav-link btn rounded-pill btn-light">Register</Link>
                 </li>
               </>
             ) : (
               <li className="nav-item">
-                <button onClick={handleLogout} className="btn btn-danger ms-2">
+                <button onClick={handleLogout} className="btn btn-outline-light ms-2 rounded-pill">
                   Logout
                 </button>
               </li>

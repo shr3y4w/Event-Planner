@@ -27,12 +27,10 @@ const EventDetailPage = () => {
         const currentEvent = response.data;
         setEvent(currentEvent);
 
-        // Fetch other events by the same organizer
         const otherRes = await axios.get(
           `http://127.0.0.1:8000/api/events/?created_by=${currentEvent.created_by}`
         );
 
-        // Filter out the current event from the list
         const other = otherRes.data.filter((ev) => ev.id !== currentEvent.id);
         setOtherEvents(other);
       } catch (error) {
@@ -76,6 +74,7 @@ const EventDetailPage = () => {
       <p className="mb-1"><strong>Date & Time:</strong> {new Date(event.date_time).toLocaleString()}</p>
       <p className="mb-1"><strong>Location:</strong> {event.location}</p>
       <p className="mb-1"><strong>Seats Available:</strong> {event.available_seats}</p>
+      <p className="mb-1"><strong>Price:</strong> ₹{event.price}</p>
 
       {event.created_by && (
         <p className="mt-2 text-sm text-gray-600">
@@ -86,8 +85,7 @@ const EventDetailPage = () => {
         </p>
       )}
 
-
-<button
+      <button
         onClick={handleBooking}
         className="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
       >
@@ -101,7 +99,6 @@ const EventDetailPage = () => {
         </div>
       )}
 
-      {/* 🔽 Other Events by Same Organizer */}
       {otherEvents.length > 0 && (
         <div className="mt-6">
           <h3 className="text-lg font-semibold mb-2">Other Events by {event.created_by}</h3>
